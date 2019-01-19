@@ -14,8 +14,8 @@ int num[1000001];
 int sorted[1000001];
 
 /* merge sort */
-void Merge_sort(int left, int right);
-void merge(int left, int mid, int right);
+void Merge_sort(int * arr, int left, int right);
+void merge(int * arr, int left, int mid, int right);
 
 /* heap sort */
 void insert_heap(int n);
@@ -27,17 +27,17 @@ int main(int argc, char * argv[])
 {
     scanf("%d", &N);
     
-    /* merge sort
+    /* merge sort */
      for(int i=0; i<N; i++){
      scanf("%d", &num[i]);
      }
-     Merge_sort(0, N-1);
+     Merge_sort(num, 0, N-1);
      for(int i=0; i<N; i++){
      printf("%d\n", num[i]);
      }
-     */
-    
-    /* heap sort */
+     
+
+    /* heap sort
     for(int i=1; i<N+1; i++){
         scanf("%d", &num[i]);
         insert_heap(i);
@@ -48,7 +48,7 @@ int main(int argc, char * argv[])
         ans = delete_heap(N-i);
         printf("%d\n", ans);
     }
-    
+    */
     return 0;
 }
 
@@ -60,9 +60,8 @@ void swap(int* a, int* b)
     *b = tmp;
 }
 
-
 /* conquer & merge */
-void merge(int left, int mid, int right)
+void merge(int * arr, int left, int mid, int right)
 {
     int i,j,k;
     i = left;   //첫번째 리스트 0
@@ -71,16 +70,16 @@ void merge(int left, int mid, int right)
     
     /* sorted 배열로 저장 */
     while(1){
-        if(num[i]<= num[j]) sorted[k++] = num[i++];
-        else sorted[k++] = num[j++];
+        if(arr[i]<= arr[j]) sorted[k++] = arr[i++];
+        else sorted[k++] = arr[j++];
         if(i == mid + 1){
             for(int s=j; s<right+1; s++)
-                sorted[k++] = num[s];
+                sorted[k++] = arr[s];
             break;
         }
         else if(j == right + 1){
             for(int s=i; s<mid+1; s++)
-                sorted[k++] = num[s];
+                sorted[k++] = arr[s];
             break;
         }
     }
@@ -91,29 +90,14 @@ void merge(int left, int mid, int right)
 }
 
 /* divide 과정 */
-void Merge_sort(int left, int right)
+void Merge_sort(int * arr, int left, int right)
 {
     int mid;
     if(left<right){
         mid = (left + right)/2;
-        Merge_sort(left, mid);
-        Merge_sort(mid+1, right);
-        merge(left, mid, right);
-    }
-}
-
-/* heap 삽입 연산 */
-void insert_heap(int n)
-{
-    int i = n;
-    while(1){
-        if(i == 1) break;
-        /* 부모랑 비교해서 부모보다 내가 더 작으면 swap */
-        else if(num[i/2] > num[i]) {
-            swap(&num[i/2], &num[i]);
-            i /= 2;
-        }
-        else break;
+        Merge_sort(arr, left, mid);
+        Merge_sort(arr, mid+1, right);
+        merge(arr, left, mid, right);
     }
 }
 
