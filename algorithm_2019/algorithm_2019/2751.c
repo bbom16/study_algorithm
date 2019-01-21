@@ -86,7 +86,7 @@ void merge(int * arr, int left, int mid, int right)
     
     /* sorted 배열에 저장한 값 다시 num 배열로 저장 */
     for(i=left; i<right+1; i++)
-        num[i] = sorted[i];
+        arr[i] = sorted[i];
 }
 
 /* divide 과정 */
