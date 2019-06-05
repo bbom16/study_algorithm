@@ -21,7 +21,7 @@ int dy[] = {1,-1,0,0};
 
 queue<pair<int,int> > bfs_que;
 
-int bfs(){
+void bfs(){
     int next_x,next_y,x=0,y=0;
     
     while(!bfs_que.empty()){
@@ -46,7 +46,6 @@ int bfs(){
             }
         }
     }
-    return tomato[y][x];
 }
 
 int main(int argc, char * argv[]){
@@ -72,8 +71,8 @@ int main(int argc, char * argv[]){
     
     bfs();
     
+    /* 걸린 시간 찾기 */
     int answer = 0;
-    
     for(int i=0; i<N; i++){
         if(answer == -1) break;
         for(int j=0; j<M; j++){
