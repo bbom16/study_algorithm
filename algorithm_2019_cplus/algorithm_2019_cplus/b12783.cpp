@@ -1,7 +1,7 @@
 // 2019.07.14
 // boj 12783
 // 곱셈 게임
-// 재귀,, 도전 
+// dp로 1 ~ 해당 수까지 구해주기 
 
 #define INF 999999
 #include <stdio.h>
@@ -17,7 +17,6 @@ vector<int> dp;
 int findMinCard(int num) {
 	//곱셈 카드 안쓰는 경우
 	int tmp_num = num;
-	
 	while (1) {
 		for (int i = 0; i < N; i++) {
 			if (tmp_num % 10 == cards[i]) {

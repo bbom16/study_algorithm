@@ -59,7 +59,6 @@ int main(int argc, char * argv[]){
 		time++;
 	}
 
-	printf("\n");
 	for (int i = 0; i < R; i++) {
 		for (int j = 0; j < C; j++) {
 			printf("%c", check[i][j]);
